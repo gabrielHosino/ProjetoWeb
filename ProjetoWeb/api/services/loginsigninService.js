@@ -11,8 +11,9 @@ module.exports = {
 	},
 	
 	read: function(value,callback){
-		var Obj = value;
-		Clients.find({email: Obj.email, password: Obj.password}).exec(function(err, client){
+		Clients.find({email: value.email, password: value.senha}).exec(function(err, client){
+			console.log("Response: ")
+			console.log(client);
 			if (err){
 				throw err;
 			}

@@ -15,9 +15,11 @@ module.exports = {
 		});
 	},
 	login: function(req,res){
-		var value = req.body;
+		var value = {email: req.param('email'), senha: req.param('senha')};
+		console.log("login");
 		console.log(value);
-		loginsigninService.read(value,function(client){
+		loginsigninService.read(value, function(client){
+			console.log(client);
 			return res.send(client);
 		});
 	}

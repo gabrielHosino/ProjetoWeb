@@ -19,12 +19,13 @@ myApp.factory('inicialService', function ($http) {
 				    return $http.post('/Inicial/save',newClient);
 				},
 				'login': function(loginvar){
-					return $http.get('/Inicial/login', loginvar);
+        			console.log(loginvar);
+					return $http.get('/Inicial/login', {params: {email: loginvar.email, senha: loginvar.senha}});
 				}
 		}
 	});
 
-myApp.controller('btns', function($scope, inicialService) {
+myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialService) {
     $scope.newClient;
     $scope.nome;
     $scope.sobrenome;
@@ -37,12 +38,14 @@ myApp.controller('btns', function($scope, inicialService) {
         $scope.email = document.getElementById("email1").value;
         $scope.senha = document.getElementById("senha1").value;
 
-        loginvar = {email: $scope.email , password: $scope.senha};
-        console.log(loginvar);
+        loginvar = {email: $scope.email, senha: $scope.senha};
+        console.log("email:")
+        console.log($scope.email);
         inicialService.login(loginvar).then(
 				//success
 				function(response){
 					console.log('Encontrei.');
+					console.log(response.data);
 				},
 				//Error
 				function(response){
@@ -71,4 +74,4 @@ myApp.controller('btns', function($scope, inicialService) {
     };
 
 
-});
+}]);
