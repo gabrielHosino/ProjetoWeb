@@ -44,8 +44,14 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
         inicialService.login(loginvar).then(
 				//success
 				function(response){
-					console.log('Encontrei.');
-					console.log(response.data);
+					if(response.data == ''){
+						console.log('Email ou senha errados');
+						document.getElementById("senha1").value = '';
+						document.getElementById("email1").value = '';
+					}
+					else{
+						//Troca para pag inicial do usuario
+					}
 				},
 				//Error
 				function(response){
