@@ -6,7 +6,8 @@ myApp.config(['$routeProvider',
 	      $routeProvider.when('/',{
 		     templateUrl: '/templates/inicial.html',
 			 controller: 'btns'
-		  }).otherwise({
+		  }).
+		  	otherwise({
 		     redirectTo: '/'
 		  })
 	   }
@@ -45,9 +46,10 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 				//success
 				function(response){
 					if(response.data == ''){
-						console.log('Email ou senha errados');
+						console.log('ERRO: Email ou senha errados.');
 						document.getElementById("senha1").value = '';
 						document.getElementById("email1").value = '';
+
 					}
 					else{
 						//Troca para pag inicial do usuario
@@ -55,7 +57,7 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 				},
 				//Error
 				function(response){
-					console.log('Erro: Email ou senha errados.');
+					console.log('Erro: Problema no acesso ao banco de dados.');
 				});	
 
     };
@@ -68,15 +70,29 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
         $scope.senha = document.getElementById("senha2").value;
         newClient = {firstname: $scope.nome , lastname: $scope.sobrenome, 
         			nickname: $scope.apelido, email: $scope.email, password: $scope.senha};
-        inicialService.save(newClient).then(
+
+        if($scope.nome == '' || $scope.sobrenome == '' || $scope.apelido == '' || 
+           $scope.email == '' || $scope.senha == ''){
+        	document.getElementById("error").innerHTML = "Erro ao cadastrar novo cliente. Não deixe nenhum espaço em branco!";
+        }else{
+        	inicialService.save(newClient).then(
 				//success
 				function(response){
-					console.log('Ok ao Salvar a Lista.');
+					console.log('Cliente Cadastrado.');
+					//colocar cliente cadastrado na proxima pagina
 				},
 				//Error
 				function(response){
-					console.log('Erro ao Salvar a Lista.');
-				});			
+					console.log('ERRO: Cliente não pode ser cadastrado.');
+				});
+        }			
+        
+
+		document.getElementById("nome").value = '';
+		document.getElementById("sobrenome").value = '';
+		document.getElementById("apelido").value = '';
+		document.getElementById("email2").value = '';
+		document.getElementById("senha2").value = '';					
     };
 
 

@@ -13,7 +13,6 @@ module.exports = {
 	read: function(value,callback){
 		Clients.find({email: value.email, password: value.senha}).exec(function(err, client){
 			if (err){
-				console.log("GOT ERROR");
 				throw err;
 			}
 			callback(client);

@@ -8,8 +8,34 @@
 module.exports = {
 
   attributes: {   
+	id: {
+		type: 'integer',
+		primaryKey: true,
+		autoIncrement: true
+	},
 	firstname: {
-      type: 'string'
+    	type: 'string',
+    	notNull: true
+    },
+    lastname: {
+    	type: 'string',
+    	notNull: true
+    },
+    nickname: {
+    	type: 'string',
+    	notNull: true,
+    	unique: true
+    },
+    password: {
+    	type: 'string',
+    	notNull: true
+    },
+    bio: {
+    	type: 'string'
+    },
+    email: {
+    	type: 'string',
+    	notNull: true
     }
 	
   }

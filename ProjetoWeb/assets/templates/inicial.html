@@ -16,6 +16,9 @@
             </div>
             <div class= "container" style="background-color: #ADD8E6">
                <div class = "row">
+                    <h2 style="color:red" id="error" align="center"></h2> 
+               </div> 
+               <div class = "row">
                    <div class = "col-sm-5 text-center">
                        <h1 align="middle">Já possui conta? Entre.</h1>
                         <div class="form-group" align="left">
@@ -33,33 +36,38 @@
 
                    <div class = "col-sm-5 text-center">
                        <h1 align="middle" id="change">Não Possui? Cadastre-se.</h1>
-                        <div class="form-group" align="left">
-                            <label for="nome">Nome:</label>
-                            <input type="text" class="form-control" id="nome" required>
-                        </div>
-                        <div class="form-group" align="left">
-                            <label for="nome">Sobrenome:</label>
-                            <input type="text" class="form-control" id="sobrenome" required>
-                        </div>
-                        <div class="form-group" align="left">
-                            <label for="apelido">Apelido:</label>
-                            <input type="text" class="form-control" id="apelido" required>
-                        </div>
-                        <div class="form-group" align="left">
-                            <label for="email2">E-mail:</label>
-                            <input type="text" class="form-control" id="email2">
-                        </div>
-                        <div class="form-group" align="left">
-                            <label for="senha2">Senha:</label>
-                            <input type="senha" class="form-control" id="senha2">
-                        </div>
-                        <div class="form-group" align="left">
-                            <form>
+                       <form name="signinform">
+                            <div align="left">
+                                <label for="nome">Nome:</label>
+                                <input name ="firstname" ng-model="firstname" class="form-control" type = "text" id = "nome" required>
+                                <span style="color:red" ng-show="signinform.firstname.$touched && signinform.firstname.$invalid">O nome é obrigatório!</span>
+                            </div>
+                            <div align="left">
+                                <label for="sobrenome">Sobrenome:</label>
+                                <input name = "lastname" ng-model="lastname" class="form-control" type = "text" id = "sobrenome" required>
+                                <span style="color:red" ng-show="signinform.lastname.$touched && signinform.lastname.$invalid">O sobrenome é obrigatório!</span>
+                            </div>
+                            <div align="left">
+                                <label for="apelido">Apelido:</label>
+                                <input name = "nickname" ng-model="nickname" class="form-control" type = "text" id = "apelido" required>
+                                <span style="color:red" ng-show="signinform.nickname.$touched && signinform.nickname.$invalid">O apelido é obrigatório!</span>
+                            </div>
+                            <div align="left">
+                                <label for="email2">E-mail:</label>
+                                <input name = "email" ng-model="email" class="form-control" type = "email" id = "email2" required>
+                                <span style="color:red" ng-show="signinform.email.$touched && signinform.email.$invalid">E-mail inválido!</span>
+                            </div>
+                             <div align="left">
+                                <label for="senha2">Senha:</label>
+                                <input name = "senha2" ng-model="password2" class="form-control" type = "password" id = "senha2" required>
+                                <span style="color:red" ng-show="signinform.password2.$touched && signinform.password.$invalid">Senha inválido!</span>
+                            </div>
+                            <div align="left">
                                 <label for="Sexo">Sexo:</label>
-                                <input type="radio" name="gender" value="male"> Male<br>
-                                <input type="radio" name="gender" value="female"> Female<br>
-                            </form>
-                        </div>
+                                <input type="radio" value="male" />Masculino
+                                <input type="radio" value="female" />Feminino<br />
+                            </div>
+                            
                        <button type="button" class="btn btn-default btn-lg btn-primary" align = "middle" color = "blue" ng-click = "signin()">Cadastrar!</button> 
                    </div>
                </div>     
@@ -73,4 +81,3 @@
                 </div>
             </div>
         </div>    
-   
