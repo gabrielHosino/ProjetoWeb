@@ -21,6 +21,10 @@ module.exports = {
     	type: 'string',
     	notNull: true
     },
+    birth:{
+    	type: 'date',
+    	notNull: true
+    },
     nickname: {
     	type: 'string',
     	notNull: true,

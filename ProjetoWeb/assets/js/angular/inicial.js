@@ -33,6 +33,7 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
     $scope.apelido;
     $scope.email;
     $scope.senha;
+    $scope.born;
     $scope.loginvar;
 
     $scope.login = function() {
@@ -49,7 +50,7 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 						console.log('ERRO: Email ou senha errados.');
 						document.getElementById("senha1").value = '';
 						document.getElementById("email1").value = '';
-
+						document.getElementById("error").innerHTML = "E-mail ou senha errados.Tente novamente.";
 					}
 					else{
 						//Troca para pag inicial do usuario
@@ -68,9 +69,10 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
         $scope.apelido = document.getElementById("apelido").value;
         $scope.email = document.getElementById("email2").value;
         $scope.senha = document.getElementById("senha2").value;
+        $scope.born = document.getElementById("date").value;
         newClient = {firstname: $scope.nome , lastname: $scope.sobrenome, 
-        			nickname: $scope.apelido, email: $scope.email, password: $scope.senha};
-
+        			nickname: $scope.apelido, email: $scope.email, password: $scope.senha, birth: $scope.born};
+        console.log(newClient);
         if($scope.nome == '' || $scope.sobrenome == '' || $scope.apelido == '' || 
            $scope.email == '' || $scope.senha == ''){
         	document.getElementById("error").innerHTML = "Erro ao cadastrar novo cliente. Não deixe nenhum espaço em branco!";
@@ -92,7 +94,8 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("sobrenome").value = '';
 		document.getElementById("apelido").value = '';
 		document.getElementById("email2").value = '';
-		document.getElementById("senha2").value = '';					
+		document.getElementById("senha2").value = '';
+		document.getElementById("date").value = '';					
     };
 
 
