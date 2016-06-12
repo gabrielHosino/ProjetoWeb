@@ -17,5 +17,14 @@ module.exports = {
 			}
 			callback(client);
 		});
+	},
+
+	readUser: function(value,callback){
+		Clients.find({id: value}).exec(function(err, client){
+			if (err){
+				throw err;
+			}
+			callback(client);
+		});
 	}
 }

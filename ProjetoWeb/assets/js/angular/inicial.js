@@ -6,8 +6,24 @@ myApp.config(['$routeProvider',
 	      $routeProvider.when('/',{
 		     templateUrl: '/templates/inicial.html',
 			 controller: 'btns'
-		  }).when('/home', {
-
+		  }).when('/home:id=*', {
+		  	 templateUrl: '/templates/home.html',
+		  	 controller: 'posts'
+		  }).when('/profile:id=*', {
+		  	 templateUrl: '/templates/profile.html',
+		  	 controller: 'profile'
+		  }).when('/friends:id=*', {
+		  	 templateUrl: '/templates/friends.html',
+		  	 controller: 'friends'
+		  }).when('/groups:id=*', {
+		  	 templateUrl: '/templates/groups.html',
+		  	 controller: 'groups'
+		  }).when('/about:id=*', {
+		  	 templateUrl: '/templates/about.html',
+		  	 controller: 'about'
+		  }).when('/contact:id=*', {
+		  	 templateUrl: '/templates/contact.html',
+		  	 controller: 'contact'
 		  }).otherwise({
 		     redirectTo: '/'
 
@@ -17,7 +33,6 @@ myApp.config(['$routeProvider',
 
 myApp.factory('inicialService', function ($http) {
 	var user;
-
 
 	return {
 			'setUser': function(newuser){
@@ -30,8 +45,10 @@ myApp.factory('inicialService', function ($http) {
 			    return $http.post('/Inicial/save',newClient);
 			},
 			'login': function(loginvar){
-    			console.log(loginvar);
 				return $http.get('/Inicial/login', {params: {email: loginvar.email, senha: loginvar.senha}});
+			},
+			'user': function(userid){
+				return $http.get('/Inicial/user', {params: {id: userid}});
 			}
 		}
 	});
@@ -63,8 +80,9 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 						document.getElementById("error").innerHTML = "E-mail ou senha errados.Tente novamente.";
 					}
 					else{
+						console.log(response.data[0]);
 						inicialService.setUser(response.data[0]);
-						location.href  = 'http://localhost:1337/home';
+						location.href  = 'http://localhost:1337/home:id=' + response.data[0].id;
 					}
 				},
 				//Error
@@ -109,17 +127,26 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("date").value = '';					
     };
 
-    myApp.controller('NavController', ['$scope', 'inicialService', function($scope, inicialService) {}]);
-
-	myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
-		$scope.user;
-
-	    $scope.loadInfo = function() {
-	    	console.log("ON THIS CONTROLLER INDEED");
-	    	$scope.user = inicialService.getUser();
-	    	var name = document.getElementById("uname");
-	    	name.innerHTML = $scope.user.firstname;
-	    }
-
-	}]);
+    loadInfo = function(){
+    	console.log("WRONG CONTROLLER INICIAL");
+    }
 }]);
+
+
+/*myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
+	var id;
+	var splitHref = location.href.split('=');
+	id = splitHref[1];
+	var user;
+	inicialService.user(id).then(
+		function(response){
+			inicialService.setUser(response.data[0]);
+			user = inicialService.getUser();
+			document.getElementsByTagName("uname")[0].innerHTML = user.firstname + " " + user.lastname;
+		},
+		//Error
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+	});/
+
+}]);*/
