@@ -49,6 +49,12 @@ myApp.factory('inicialService', function ($http) {
 			},
 			'user': function(userid){
 				return $http.get('/Inicial/user', {params: {id: userid}});
+			},
+			'newPost': function(newPost){
+			    return $http.post('/Inicial/newpost',newPost);
+			},
+			'getYourPosts': function(userid){
+				return $http.get('/Inicial/yourposts', {params: {id: userid}}); 
 			}
 		}
 	});
