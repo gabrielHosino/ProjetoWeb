@@ -6,9 +6,11 @@ myApp.config(['$routeProvider',
 	      $routeProvider.when('/',{
 		     templateUrl: '/templates/inicial.html',
 			 controller: 'btns'
-		  }).
-		  	otherwise({
+		  }).when('/home', {
+
+		  }).otherwise({
 		     redirectTo: '/'
+
 		  })
 	   }
 	   ]);
@@ -107,19 +109,9 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("date").value = '';					
     };
 
-    myApp.controller('submit', ['$scope', 'sharedParameter', function($scope, sharedParameter) {
-	var param;
+    myApp.controller('NavController', ['$scope', 'inicialService', function($scope, inicialService) {}]);
 
-	$scope.writeParameters = function(){
-		param = document.getElementById('DATA').value;
-		sharedParameter.setKey(param);
-		sharedParameter.addData(param);
-	};
-	}]);
-
-    myApp.controller('NavController', ['$scope', 'inicialService', function($scope, sharedParameter) {}]);
-
-	myApp.controller('posts', ['$scope', 'inicialService', function($scope, sharedParameter) {
+	myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
 		$scope.user;
 
 	    $scope.loadInfo = function() {
