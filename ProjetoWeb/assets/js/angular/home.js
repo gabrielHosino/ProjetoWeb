@@ -1,22 +1,27 @@
 var myApp = angular.module('inicial');
 
 //Service
-myApp.factory('homeService', function($window){
-	
-
-});
-
-
-myApp.controller('NavController', ['$scope', 'inicialService', function($scope, inicialService) {}]);
-
 myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
-		$scope.user;
+	var id;
+	var splitHref = location.href.split('=');
+	id = splitHref[1];
+	var user;
+	inicialService.user(id).then(
+		function(response){
+			inicialService.setUser(response.data[0]);
+			user = inicialService.getUser();
+			document.getElementsByTagName("uname")[0].innerHTML = user.firstname + " " + user.lastname;
+		},
+		//Error
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+	});
 
-	    $scope.loadInfo = function() {
-	    	console.log("ON THIS CONTROLLER INDEED");
-	    	$scope.user = inicialService.getUser();
-	    	var name = document.getElementById("uname");
-	    	name.innerHTML = $scope.user.firstname;
-	    };
+	document.getElementById("home").href = document.getElementById("home").href + ":id=" + id;
+	document.getElementById("profile").href = document.getElementById("profile").href + ":id=" + id;
+	document.getElementById("friends").href = document.getElementById("friends").href + ":id=" + id;
+	document.getElementById("groups").href = document.getElementById("groups").href + ":id=" + id;
+	document.getElementById("about").href = document.getElementById("about").href + ":id=" + id;
+	document.getElementById("contact").href = document.getElementById("contact").href + ":id=" + id;
 
 }]);

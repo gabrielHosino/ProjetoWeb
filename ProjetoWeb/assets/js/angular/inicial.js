@@ -126,4 +126,4 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("senha2").value = '';
 		document.getElementById("date").value = '';					
     };
-});
+}]);
