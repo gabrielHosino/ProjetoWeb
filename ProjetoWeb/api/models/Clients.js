@@ -40,7 +40,7 @@ module.exports = {
     email: {
     	type: 'string',
     	notNull: true
-    }
+    },
     twiches: {
         collection: 'twiche',
         via: 'user'

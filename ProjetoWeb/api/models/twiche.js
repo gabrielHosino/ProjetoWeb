@@ -14,14 +14,13 @@ module.exports = {
     	type: 'string',
     	notNull: true
     },
-    timestamp:{
+    timestamp: {
     	type: 'timestamp',
     	notNull: true
     },
-    user: 
+    user: {
         model: 'clients',
-        required: true,
         notNull: true
-	
+    }	
   }
 };
