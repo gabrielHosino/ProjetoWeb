@@ -21,5 +21,13 @@ module.exports = {
 		loginsigninService.read(value, function(client){
 			return res.json(client);
 		});
+	},
+	user: function(req,res){
+		var value = req.param('id');
+		console.log("user");
+		console.log(value);
+		loginsigninService.readUser(value, function(client){
+			return res.json(client);
+		});
 	}
 };
