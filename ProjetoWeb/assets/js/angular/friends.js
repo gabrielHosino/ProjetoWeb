@@ -1,6 +1,7 @@
 var myApp = angular.module('inicial');
 
-myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
+//Service
+myApp.controller('friends', ['$scope', 'inicialService', function($scope, inicialService) {
 	var id;
 	var splitHref = location.href.split('=');
 	id = splitHref[1];
@@ -22,5 +23,4 @@ myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialS
 	document.getElementById("groups").href = document.getElementById("groups").href + ":id=" + id;
 	document.getElementById("about").href = document.getElementById("about").href + ":id=" + id;
 	document.getElementById("contact").href = document.getElementById("contact").href + ":id=" + id;
-
 }]);

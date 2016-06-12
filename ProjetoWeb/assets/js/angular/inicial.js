@@ -127,4 +127,8 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("date").value = '';					
     };
 
+
+
 }]);
+
+
