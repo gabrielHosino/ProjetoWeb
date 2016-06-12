@@ -29,5 +29,21 @@ module.exports = {
 		loginsigninService.readUser(value, function(client){
 			return res.json(client);
 		});
+	},
+	newpost: function(req,res){
+		//var value = req.param('Teste');
+		var value = req.body;
+		console.log(value);
+		postsService.save(value, function(result){
+			return res.json(result);
+		});
+	},
+	yourposts: function(req,res){
+		var value = req.param('id');
+		console.log("user");
+		console.log(value);
+		postsService.getyourposts(value, function(posts){
+			return res.json(posts);
+		});
 	}
 };

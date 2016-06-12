@@ -6,10 +6,6 @@ module.exports = {
 		primaryKey: true,
 		autoIncrement: true
 	},
-	title: {
-    	type: 'string',
-    	notNull: true
-    },
     text: {
     	type: 'string',
     	notNull: true

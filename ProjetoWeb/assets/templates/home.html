@@ -93,8 +93,9 @@
 			</div>
 		</div>
 		<div class = "row">
-			<input style = "width: 35em; height: 5em; border-radius: 8px" type = "text" size = "50" maxlength = "200" name = "post" placeholder="Diga algo!">
+			<input style = "width: 35em; height: 5em; border-radius: 8px" type = "text" size = "50" maxlength = "200" name = "post" id="posts" placeholder="Diga algo!">
 			<br><br><br>
+			<button type="button" class="btn btn-default btn-lg btn-primary" onclick ="myNewPost()">Criar!</button> 
 			<urecposts class = "col-md-8">Posts Recentes</urecposts>
 			<br>
 			<div id = "divrecpost" onload = "loadRecPosts()">
