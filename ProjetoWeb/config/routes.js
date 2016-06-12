@@ -34,7 +34,29 @@ module.exports.routes = {
 
   '/': {
     view: 'homepage'
+  },
+  '/home': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/home.html');   
+  },
+  '/friends': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/friends.html');    
+  },
+  '/groups': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/groups.html');    
+  },
+  '/about': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/about.html');    
+  },
+  '/contact': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/contact.html');    
+  },
+  '/profile': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/profile.html');    
+  },
+  '/index': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/index.html');    
   }
+
 
   /***************************************************************************
   *                                                                          *

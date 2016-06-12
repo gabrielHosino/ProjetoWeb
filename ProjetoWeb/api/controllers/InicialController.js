@@ -19,8 +19,7 @@ module.exports = {
 		console.log("login");
 		console.log(value);
 		loginsigninService.read(value, function(client){
-			console.log(client);
-			return res.send(client);
+			return res.json(client);
 		});
 	}
 };

@@ -14,15 +14,23 @@ myApp.config(['$routeProvider',
 	   ]);
 
 myApp.factory('inicialService', function ($http) {
-		
-		return {
-				'save': function(newClient){
-				    return $http.post('/Inicial/save',newClient);
-				},
-				'login': function(loginvar){
-        			console.log(loginvar);
-					return $http.get('/Inicial/login', {params: {email: loginvar.email, senha: loginvar.senha}});
-				}
+	var user;
+
+
+	return {
+			'setUser': function(newuser){
+				user = newuser;
+			},
+			'getUser': function(){
+				return user;
+			},
+			'save': function(newClient){
+			    return $http.post('/Inicial/save',newClient);
+			},
+			'login': function(loginvar){
+    			console.log(loginvar);
+				return $http.get('/Inicial/login', {params: {email: loginvar.email, senha: loginvar.senha}});
+			}
 		}
 	});
 
@@ -53,7 +61,8 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 						document.getElementById("error").innerHTML = "E-mail ou senha errados.Tente novamente.";
 					}
 					else{
-						//Troca para pag inicial do usuario
+						inicialService.setUser(response.data[0]);
+						location.href  = 'http://localhost:1337/home';
 					}
 				},
 				//Error
@@ -98,5 +107,27 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("date").value = '';					
     };
 
+    myApp.controller('submit', ['$scope', 'sharedParameter', function($scope, sharedParameter) {
+	var param;
 
+	$scope.writeParameters = function(){
+		param = document.getElementById('DATA').value;
+		sharedParameter.setKey(param);
+		sharedParameter.addData(param);
+	};
+	}]);
+
+    myApp.controller('NavController', ['$scope', 'inicialService', function($scope, sharedParameter) {}]);
+
+	myApp.controller('posts', ['$scope', 'inicialService', function($scope, sharedParameter) {
+		$scope.user;
+
+	    $scope.loadInfo = function() {
+	    	console.log("ON THIS CONTROLLER INDEED");
+	    	$scope.user = inicialService.getUser();
+	    	var name = document.getElementById("uname");
+	    	name.innerHTML = $scope.user.firstname;
+	    }
+
+	}]);
 }]);
