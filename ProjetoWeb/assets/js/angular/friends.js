@@ -1,9 +1,8 @@
 var myApp = angular.module('inicial');
 
-myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialService) {
-	
+//Service
+myApp.controller('friends', ['$scope', 'inicialService', function($scope, inicialService) {
 	var id;
-	var posts = [];
 	var splitHref = location.href.split('=');
 	id = splitHref[1];
 	var user;
@@ -24,21 +23,4 @@ myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialS
 	document.getElementById("groups").href = document.getElementById("groups").href + ":id=" + id;
 	document.getElementById("about").href = document.getElementById("about").href + ":id=" + id;
 	document.getElementById("contact").href = document.getElementById("contact").href + ":id=" + id;
-
-
-	myNewPost = function(){
-		var text = document.getElementById("posts").value;
-		console.log(text);
-		var myPost = {text : text};
-		inicialService.newPost(myPost).then(
-				//success
-				function(response){
-					console.log('Post Criado.');
-					//colocar cliente cadastrado na proxima pagina
-				},
-				//Error
-				function(response){
-					console.log('ERRO: Post não pode ser cadastrado.');
-				});
-	};
 }]);
