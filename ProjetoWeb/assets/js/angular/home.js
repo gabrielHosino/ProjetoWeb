@@ -7,6 +7,23 @@ myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialS
 	var splitHref = location.href.split('=');
 	id = splitHref[1];
 	var user;
+
+	myNewPost = function(){
+		var text = document.getElementById("posts").value;
+		console.log(text);
+		var myPost = {text : text};
+		inicialService.newPost(myPost).then(
+				//success
+				function(response){
+					console.log('Post Criado.');
+					//colocar cliente cadastrado na proxima pagina
+				},
+				//Error
+				function(response){
+					console.log('ERRO: Post não pode ser cadastrado.');
+				});
+	};
+
 	inicialService.user(id).then(
 		function(response){
 			inicialService.setUser(response.data[0]);
@@ -24,21 +41,4 @@ myApp.controller('posts', ['$scope', 'inicialService', function($scope, inicialS
 	document.getElementById("groups").href = document.getElementById("groups").href + ":id=" + id;
 	document.getElementById("about").href = document.getElementById("about").href + ":id=" + id;
 	document.getElementById("contact").href = document.getElementById("contact").href + ":id=" + id;
-
-
-	myNewPost = function(){
-		var text = document.getElementById("posts").value;
-		console.log(text);
-		var myPost = {text : text};
-		inicialService.newPost(myPost).then(
-				//success
-				function(response){
-					console.log('Post Criado.');
-					//colocar cliente cadastrado na proxima pagina
-				},
-				//Error
-				function(response){
-					console.log('ERRO: Post não pode ser cadastrado.');
-				});
-	};
 }]);

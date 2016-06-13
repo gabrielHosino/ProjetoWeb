@@ -10,10 +10,16 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 		function(response){
 			inicialService.setUser(response.data[0]);
 			user = inicialService.getUser();
+			console.log(user);
 			document.getElementsByTagName("uname")[0].innerHTML = user.firstname + " " + user.lastname;
 			console.log("BIRTH " + user.birth);
-			var date = user.birth.split("T");
-			document.getElementsByTagName("ubirth2")[0].innerHTML = date[0];
+			console.log("BIO " + user.bio);
+			var date
+			if(user.birth != undefined){
+				date = user.birth.split("T");
+				document.getElementsByTagName("ubirth2")[0].innerHTML = date[0];
+			}
+			document.getElementsByTagName("udesc")[0].innerHTML = user.bio;
 		},
 		//Error
 		function(response){
@@ -48,31 +54,29 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 		if(newdate != ""){
 			var dates = newdate.split("T");
 			date.innerHTML = dates[0];
-			//inicialService.updateBirth(dates[0]);
+			inicialService.updateBirth({id: id, newbirth: dates[0]});
 		}else{
+			console.log("NULLDATE");
 			date.removeChild(newdt);
 		}
 
-		console.log("ON CHANGE");
-		console.log("NAME: " + newfirstname + " " + newlastname);
-		console.log("DATE: " + newdate);
-		console.log("DESC: " + newdesc);
-
 		if(newdesc != ""){
 			bio.innerHTML = newdesc;
-			//inicialService.updateBio(newdesc);
+			inicialService.updateBio({id: id, newbio: newdesc});
 		}
 		else{
+			console.log("NULLDESC");
 			bio.removeChild(confirm);
 			bio.removeChild(newbio);
 		}
 
 		if(newfirstname != ""){
 			name.innerHTML = newfirstname + " " + newlastname;
-			//inicialService.updateFirstname(newfirstname);
-			//inicialService.updateLastname(newlastname);
+			inicialService.updateFirstname({id: id, newfn: newfirstname});
+			inicialService.updateLastname({id: id, newln: newlastname});
 		}
 		else{
+			console.log("NULLNOME");
 			name.removeChild(newfn);
 			name.removeChild(newln);
 		}
@@ -113,7 +117,6 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 		names.appendChild(newfirstname);
 		names.appendChild(newlastname);
 
-		
 	};
 
 	showEdit = function(){

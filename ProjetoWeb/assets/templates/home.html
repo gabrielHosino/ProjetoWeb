@@ -2,11 +2,11 @@
 <head>
 	<meta charset = "utf-8"/>
 	
-	<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 
-	<link href = "./../css/bootstrap.min.css" rel = "stylesheet"/>
-	<script src = "./../js/angular/bootstrap.min.js"></script>
+	<link href="./../css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="./../js/bootstrap.min.js"></script>
 	<script src="./../js/angular/inicial.js"></script>
 	<script src="./../js/angular/home.js"></script>
 
@@ -95,7 +95,7 @@
 		<div class = "row">
 			<input style = "width: 35em; height: 5em; border-radius: 8px" type = "text" size = "50" maxlength = "200" name = "post" id="posts" placeholder="Diga algo!">
 			<br><br><br>
-			<button type="button" class="btn btn-default btn-lg btn-primary" onclick ="myNewPost()">Criar!</button> 
+			<button id="buttonpost" type="button" class="btn btn-default btn-lg btn-primary">Criar!</buttonpost> 
 			<urecposts class = "col-md-8">Posts Recentes</urecposts>
 			<br>
 			<div id = "divrecpost" onload = "loadRecPosts()">
