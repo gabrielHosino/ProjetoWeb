@@ -40,87 +40,115 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 	console.log("GERE");
 
 	inicialService.searchByFN(search).then(
-			function(response){
-				console.log("firstname");
-				console.log(response.data);
+		function(response){
+			console.log("firstname");
+			console.log(response.data);
 
-				var results = document.getElementsByTagName("usearch")[0];
-				var append = document.getElementById("divSearch");
-				var cName = results.className;
-				for(i = 0; i < response.data.length; ++i){
-					if(i % 2 == 0){
-						node = document.createElement("divs");
-					}else{
-						node = document.createElement("divs2");
-					}
-
-					node.className = cName;
-					var name = document.createElement("h4");
-					var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
-
-					name.appendChild(textname);
-					node.appendChild(name);
-					append.appendChild(node);
+			var results = document.getElementsByTagName("usearch")[0];
+			var append = document.getElementById("divSearch");
+			var cName = results.className;
+			for(i = 0; i < response.data.length; ++i){
+				if(i % 2 == 0){
+					node = document.createElement("divs");
+				}else{
+					node = document.createElement("divs2");
 				}
-			},
-			function(response){
-				console.log('Erro: Problema no acesso ao banco de dados.');
+
+				node.className = cName;
+				var name = document.createElement("h4");
+				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+
+				name.appendChild(textname);
+				node.appendChild(name);
+				append.appendChild(node);
 			}
-		);
-		inicialService.searchByLN(search).then(
-			function(response){
-				console.log("lastname");
-				console.log(response.data);
+		},
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		}
+	);
+	inicialService.searchByLN(search).then(
+		function(response){
+			console.log("lastname");
+			console.log(response.data);
 
-				var results = document.getElementsByTagName("usearch")[0];
-				var append = document.getElementById("divSearch");
-				var cName = results.className;
-				for(i = 0; i < response.data.length; ++i){
-					if(i % 2 == 0){
-						node = document.createElement("divs");
-					}else{
-						node = document.createElement("divs2");
-					}
-
-					node.className = cName;
-					var name = document.createElement("h4");
-					var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
-
-					name.appendChild(textname);
-					node.appendChild(name);
-					append.appendChild(node);
+			var results = document.getElementsByTagName("usearch")[0];
+			var append = document.getElementById("divSearch");
+			var cName = results.className;
+			for(i = 0; i < response.data.length; ++i){
+				if(i % 2 == 0){
+					node = document.createElement("divs");
+				}else{
+					node = document.createElement("divs2");
 				}
-			},
-			function(response){
-				console.log('Erro: Problema no acesso ao banco de dados.');
+
+				node.className = cName;
+				var name = document.createElement("h4");
+				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+
+				name.appendChild(textname);
+				node.appendChild(name);
+				append.appendChild(node);
 			}
-		);
-		inicialService.searchByNick(search).then(
-			function(response){
-				console.log("nickname");
-				console.log(response.data);
+		},
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		}
+	);
+	inicialService.searchByNick(search).then(
+		function(response){
+			console.log("nickname");
+			console.log(response.data);
 
-				var results = document.getElementsByTagName("usearch")[0];
-				var append = document.getElementById("divSearch");
-				var cName = results.className;
-				for(i = 0; i < response.data.length; ++i){
-					if(i % 2 == 0){
-						node = document.createElement("divs");
-					}else{
-						node = document.createElement("divs2");
-					}
-
-					node.className = cName;
-					var name = document.createElement("h4");
-					var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
-
-					name.appendChild(textname);
-					node.appendChild(name);
-					append.appendChild(node);
+			var results = document.getElementsByTagName("usearch")[0];
+			var append = document.getElementById("divSearch");
+			var cName = results.className;
+			for(i = 0; i < response.data.length; ++i){
+				if(i % 2 == 0){
+					node = document.createElement("divs");
+				}else{
+					node = document.createElement("divs2");
 				}
-			},
-			function(response){
-				console.log('Erro: Problema no acesso ao banco de dados.');
+
+				node.className = cName;
+				var name = document.createElement("h4");
+				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+
+				name.appendChild(textname);
+				node.appendChild(name);
+				append.appendChild(node);
 			}
+		},
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		}
+	);
+	inicialService.getGroupByName(search).then(
+		function(response){
+			console.log("group");
+			console.log(response.data);
+
+			var results = document.getElementsByTagName("usearch")[0];
+			var append = document.getElementById("divSearch");
+			var cName = results.className;
+			for(i = 0; i < response.data.length; ++i){
+				if(i % 2 == 0){
+					node = document.createElement("divs");
+				}else{
+					node = document.createElement("divs2");
+				}
+
+				node.className = cName;
+				var name = document.createElement("h4");
+				var textname = document.createTextNode("@" + response.data[i].nome);
+
+				name.appendChild(textname);
+				node.appendChild(name);
+				append.appendChild(node);
+			}
+		},
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		}
 	);
 }]);

@@ -1,8 +1,6 @@
 module.exports = {
 	create: function(newgroup, callback){
 		var Obj = newgroup;
-		console.log("DATABASE");
-		console.log(Obj);
 		Group.create(Obj).exec(function(err, result){
 			if(err){
 				throw err;
@@ -11,9 +9,16 @@ module.exports = {
 		});
 	},
 
+	getGroupByName: function(value, callback){
+		Group.find({nome: value.nome}).exec(function(err, groups){
+			if(err){
+				throw err;
+			}
+			callback(groups);
+		});
+	},
+
 	getGroup: function(value, callback){
-		console.log("DATABASE");
-		console.log(value);
 		Group.find({id: value.id, nome: value.nome}).exec(function(err, groups){
 			if(err){
 				throw err;
@@ -23,13 +28,10 @@ module.exports = {
 	},	
 
 	getGroups: function(value, callback){
-		console.log("DATABASE");
-		console.log(value);
 		Group.find({id: value.id}).exec(function(err, groups){
 			if(err){
 				throw err;
 			}
-			console.log(groups);
 			callback(groups);
 		});
 	}

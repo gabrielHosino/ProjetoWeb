@@ -16,7 +16,7 @@ myApp.controller('groups', ['$scope', 'inicialService', function($scope, inicial
 
 		if(namegroup.value != ""){
 			console.log(id + " " + namegroup.value);
-			inicialService.createGroup({id: id, nome: namegroup.value});
+			inicialService.createGroup({id: id, nome: namegroup.value, ownerid: id});
 		}
 
 		newgroup.removeChild(namegroup);

@@ -84,11 +84,14 @@ myApp.factory('inicialService', function ($http) {
 			'createGroup': function(newgroup){
 				return $http.post('Inicial/createGroup', newgroup);
 			},
-			'getGroup': function(group){
-				return $http.get('/Inicial/getGroup', {params: {id: group.id, nome: group.nome}});
+			'getGroupByName': function(group){
+				return $http.get('/Inicial/getGroupByName', {params: {nome: group}});
 			},
 			'getGroups': function(group){
 				return $http.get('/Inicial/getGroups', {params: {id: group.id}});
+			},
+			'getFriends': function(follower){
+				return $http.get('/Inicial/getFriends', {params: {follower: follower.id}})
 			},
 			'newPost': function(newPost){
 			    return $http.post('/Inicial/newpost',newPost);

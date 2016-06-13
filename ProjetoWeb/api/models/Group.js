@@ -2,11 +2,14 @@ module.exports = {
 	attributes:{
 		id: {
 			type: 'integer',
-			notNull: true,
-			autoIncrement: false
+			notNull: true
 		},
 		nome: {
 			type: 'string',
+			notNull: true
+		},
+		ownerid: {
+			type: 'integer',
 			notNull: true
 		},
 		relativeid: {

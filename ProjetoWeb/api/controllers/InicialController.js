@@ -85,6 +85,12 @@ module.exports = {
 			return res.json(result);
 		});
 	},
+	getGroupByName: function(req, res){
+		var value = {nome: req.param('nome')};
+		groupsService.getGroupByName(value, function(result){
+			return res.json(result);
+		});
+	},
 	getGroup: function(req, res){
 		var value = {id: req.param('id'), nome: req.param('nome')};
 		groupsService.getGroup(value, function(result){
@@ -97,8 +103,13 @@ module.exports = {
 			return res.json(result);
 		});
 	},
+	getFriends: function(req, res){
+		var value = {follower: req.param('follower')};
+		friendsService.getFriends(value, function(result){
+			return res.json(result);
+		})
+	},
 	newpost: function(req,res){
-		//var value = req.param('Teste');
 		var value = req.body;
 		console.log(value);
 		postsService.save(value, function(result){
@@ -107,8 +118,6 @@ module.exports = {
 	},
 	yourposts: function(req,res){
 		var value = req.param('id');
-		console.log("user");
-		console.log(value);
 		postsService.getyourposts(value, function(posts){
 			return res.json(posts);
 		});
