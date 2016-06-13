@@ -69,6 +69,15 @@ myApp.factory('inicialService', function ($http) {
 			'updateBirth': function(userbirth){
 				return $http.post('/Inicial/updateBirth', {id: userbirth.id, newbirth: userbirth.newbirth});
 			},
+			'createGroup': function(newgroup){
+				return $http.post('Inicial/createGroup', newgroup);
+			},
+			'getGroup': function(group){
+				return $http.get('/Inicial/getGroup', {params: {id: group.id, nome: group.nome}});
+			},
+			'getGroups': function(group){
+				return $http.get('/Inicial/getGroups', {params: {id: group.id}});
+			},
 			'newPost': function(newPost){
 			    return $http.post('/Inicial/newpost',newPost);
 			},

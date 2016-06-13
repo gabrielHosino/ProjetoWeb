@@ -56,6 +56,24 @@ module.exports = {
 			return res.json(result);
 		});
 	},
+	createGroup: function(req, res){
+		var value = req.body;
+		groupsService.create(value, function(result){
+			return res.json(result);
+		});
+	},
+	getGroup: function(req, res){
+		var value = {id: req.param('id'), nome: req.param('nome')};
+		groupsService.getGroup(value, function(result){
+			return res.json(result);
+		});
+	},
+	getGroups: function(req, res){
+		var value = {id: req.param('id')};
+		groupsService.getGroups(value, function(result){
+			return res.json(result);
+		});
+	},
 	newpost: function(req,res){
 		//var value = req.param('Teste');
 		var value = req.body;
