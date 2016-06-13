@@ -69,6 +69,9 @@ myApp.factory('inicialService', function ($http) {
 			'user': function(userid){
 				return $http.get('/Inicial/user', {params: {id: userid}});
 			},
+			'userByNick': function(usernick){
+				return $http.get('/Inicial/userByNick', {params: {nickname: usernick}});
+			},
 			'updateBio': function(userbio){
 				return $http.post('/Inicial/updateBio', {id: userbio.id, newbio: userbio.newbio});
 			},
@@ -91,13 +94,19 @@ myApp.factory('inicialService', function ($http) {
 				return $http.get('/Inicial/getGroups', {params: {id: group.id}});
 			},
 			'getFriends': function(follower){
-				return $http.get('/Inicial/getFriends', {params: {follower: follower.id}})
+				return $http.get('/Inicial/getFriends', {params: {follower: follower.follower}})
 			},
 			'newPost': function(newPost){
 			    return $http.post('/Inicial/newpost',newPost);
 			},
 			'getYourPosts': function(userid){
 				return $http.get('/Inicial/yourposts', {params: {id: userid}}); 
+			},
+			'follow': function(newfollow){
+				return $http.post('/Inicial/follow', newfollow);
+			},
+			'joinGroup': function(newjoin){
+				return $http.post('/Inicial/joinGroup', newjoin);
 			}
 		}
 	});

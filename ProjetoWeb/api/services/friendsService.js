@@ -11,7 +11,7 @@ module.exports = {
 	},
 
 	getFriend: function(value, callback){
-		Group.find({follower: value.follower, follows: value.follows}).exec(function(err, friends){
+		Friend.find({follower: value.follower, follows: value.follows}).exec(function(err, friends){
 			if(err){
 				throw err;
 			}
@@ -20,7 +20,7 @@ module.exports = {
 	},	
 
 	getFriends: function(value, callback){
-		Group.find({follower: value.follower}).exec(function(err, friends){
+		Friend.find({follower: value.follower}).exec(function(err, friends){
 			if(err){
 				throw err;
 			}

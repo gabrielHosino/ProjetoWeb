@@ -2,8 +2,8 @@ module.exports = {
 	attributes:{
 		id: {
 			type: 'integer',
-			primaryKey: true,
-			autIncrement: true
+			autoIncrement: true,
+			primaryKey: true
 		},
 		follower: {
 			type: 'integer',

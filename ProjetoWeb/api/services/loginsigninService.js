@@ -101,5 +101,17 @@ module.exports = {
 			}
 			callback(client);
 		});
+	},
+
+	readUserByNick: function(value,callback){
+		console.log(value);
+		Clients.find({nickname: value}).exec(function(err, client){
+			if (err){
+				throw err;
+			}
+			console.log("DATABASE");
+			console.log(client);
+			callback(client);
+		});
 	}
 }

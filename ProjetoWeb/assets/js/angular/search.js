@@ -10,6 +10,63 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 		location.href = "http://localhost:1337/search:id=" + id + ":search=" + looking;
 	};
 
+	joinGroup = function(event){
+		var parent = event.path[1].firstChild.innerHTML;
+		var elem = parent.split('	');
+		elem = elem[0].split('@');
+		var groupName = elem[1];
+
+		console.log("JOIN");
+		console.log(groupName);
+
+		inicialService.getGroupByName(groupName).then(
+		function(response){
+			var ownerid = response.data[0].ownerid;
+			var nome = response.data[0].nome;
+			var newjoin = {id: parseInt(id), nome: nome, ownerid: ownerid};
+
+			console.log("NEW JOIN");
+			console.log(newjoin);
+
+			inicialService.joinGroup(newjoin).then(
+				function(response2){
+					console.log("NAILED IT");			
+				},
+				function(response2){
+					console.log('Erro: Problema no acesso ao banco de dados.');
+				});
+		},
+		//Error
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		});
+	};
+
+	followUser = function(event){
+		var parent = event.path[1].firstChild.innerHTML;
+		var elem = parent.split('	');
+		elem = elem[0].split('@');
+		var nick = elem[1];
+
+		inicialService.userByNick(nick).then(
+		function(response){
+			var follows = response.data[0].id;
+			var newfollow = {follower: parseInt(id), follows: follows};
+
+			inicialService.follow(newfollow).then(
+				function(response2){
+					console.log("NAILED IT");			
+				},
+				function(response2){
+					console.log('Erro: Problema no acesso ao banco de dados.');
+				});
+		},
+		//Error
+		function(response){
+			console.log('Erro: Problema no acesso ao banco de dados.');
+		});
+	}
+
 	console.log("THIS controller");
 
 	var splitHref = location.href.split('=');
@@ -57,9 +114,15 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 				node.className = cName;
 				var name = document.createElement("h4");
 				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+				var button = document.createElement("BUTTON");
+				
+				button.appendChild(document.createTextNode("Follow"));
+				button.style.float = "right";
+				button.addEventListener("click", followUser);
 
 				name.appendChild(textname);
 				node.appendChild(name);
+				node.appendChild(button);
 				append.appendChild(node);
 			}
 		},
@@ -85,9 +148,15 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 				node.className = cName;
 				var name = document.createElement("h4");
 				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+				var button = document.createElement("BUTTON");
+				
+				button.appendChild(document.createTextNode("Follow"));
+				button.style.float = "right";
+				button.addEventListener("click", followUser);
 
 				name.appendChild(textname);
 				node.appendChild(name);
+				node.appendChild(button);
 				append.appendChild(node);
 			}
 		},
@@ -113,9 +182,15 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 				node.className = cName;
 				var name = document.createElement("h4");
 				var textname = document.createTextNode("@" + response.data[i].nickname + "	" + response.data[i].firstname + " " + response.data[i].lastname);
+				var button = document.createElement("BUTTON");
+				
+				button.appendChild(document.createTextNode("Follow"));
+				button.style.float = "right";
+				button.addEventListener("click", followUser);
 
 				name.appendChild(textname);
 				node.appendChild(name);
+				node.appendChild(button);
 				append.appendChild(node);
 			}
 		},
@@ -141,9 +216,15 @@ myApp.controller('search', ['$scope', 'inicialService', function($scope, inicial
 				node.className = cName;
 				var name = document.createElement("h4");
 				var textname = document.createTextNode("@" + response.data[i].nome);
+				var button = document.createElement("BUTTON");
+				
+				button.appendChild(document.createTextNode("Join"));
+				button.style.float = "right";
+				button.addEventListener("click", joinGroup);
 
 				name.appendChild(textname);
 				node.appendChild(name);
+				node.appendChild(button);
 				append.appendChild(node);
 			}
 		},

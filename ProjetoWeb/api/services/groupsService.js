@@ -9,6 +9,16 @@ module.exports = {
 		});
 	},
 
+	joinGroup: function(newjoin, callback){
+		var Obj = newjoin;
+		Group.create(Obj).exec(function(err, result){
+			if(err){
+				throw err;
+			}
+			callback(result);
+		});
+	},
+
 	getGroupByName: function(value, callback){
 		Group.find({nome: value.nome}).exec(function(err, groups){
 			if(err){

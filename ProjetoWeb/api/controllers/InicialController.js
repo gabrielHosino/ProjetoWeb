@@ -53,6 +53,14 @@ module.exports = {
 			return res.json(client);
 		});
 	},
+	userByNick: function(req,res){
+		var value = req.param('nickname');
+		console.log("user");
+		console.log(value);
+		loginsigninService.readUserByNick(value, function(client){
+			return res.json(client);
+		});
+	},
 	updateBio: function(req, res){
 		var value = {id: req.param('id'), newbio: req.param('newbio')};
 		loginsigninService.updateBio(value, function(result){
@@ -120,6 +128,18 @@ module.exports = {
 		var value = req.param('id');
 		postsService.getyourposts(value, function(posts){
 			return res.json(posts);
+		});
+	},
+	follow: function(req, res){
+		var value = req.body;
+		friendsService.follow(value, function(result){
+			return res.json(result);
+		});
+	},
+	joinGroup: function(req, res){
+		var value = req.body;
+		groupsService.joinGroup(value, function(result){
+			return res.json(result);
 		});
 	}
 };
