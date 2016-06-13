@@ -24,6 +24,9 @@ myApp.config(['$routeProvider',
 		  }).when('/contact:id=*', {
 		  	 templateUrl: '/templates/contact.html',
 		  	 controller: 'contact'
+		  }).when('/search:id=*:search=*', {
+		  	 templateUrl: '/templates/search.hmtl',
+		  	 controller: 'search'
 		  }).otherwise({
 		     redirectTo: '/'
 
@@ -36,6 +39,15 @@ myApp.factory('inicialService', function ($http) {
 	var myPosts = [];
 
 	return {
+			'searchByFN': function(search){
+				return $http.get('/Inicial/searchByFN', {params: {search: search}});
+			},
+			'searchByLN': function(search){
+				return $http.get('/Inicial/searchByLN', {params: {search: search}});
+			},
+			'searchByNick': function(search){
+				return $http.get('/Inicial/searchByNick', {params: {search: search}});
+			},
 			'setUser': function(newuser){
 				user = newuser;
 			},

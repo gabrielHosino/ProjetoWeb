@@ -52,7 +52,10 @@ module.exports.routes = {
   },
   '/profile:id=*': function(req, res, next){
     res.sendfile(sails.config.appPath + '/assets/templates/profile.html');    
-  }
+  },
+  '/search:id=*:search=*': function(req, res, next){
+    res.sendfile(sails.config.appPath + '/assets/templates/search.html');
+  },
 
 
   /***************************************************************************

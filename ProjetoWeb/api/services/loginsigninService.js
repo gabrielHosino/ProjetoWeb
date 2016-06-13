@@ -19,6 +19,43 @@ module.exports = {
 		});
 	},
 
+	searchByFN: function(value, callback){
+		console.log(value.search);
+		Clients.find({firstname: value.search}).exec(function(err, client){
+			if(err){
+				throw err;
+			}
+			console.log("DATABASE");
+			console.log(client);
+			callback(client);
+		});
+	},
+
+	searchByLN: function(value, callback){
+		console.log(value.search);
+		Clients.find({lastname: value.search}).exec(function(err, client){
+			if(err){
+				throw err;
+			}
+
+			console.log("DATABASE");
+			console.log(client);
+			callback(client);
+		});
+	},
+
+	searchByNick: function(value, callback){
+		console.log(value.search);
+		Clients.find({nickname: value.search}).exec(function(err, client){
+			if(err){
+				throw err;
+			}
+			console.log("DATABASE");
+			console.log(client);
+			callback(client);
+		});
+	},
+
 	updateBio: function(newbio, callback){
 		Clients.update({id: newbio.id}, {bio: newbio.newbio}).exec(function(err, result){
 			if(err){

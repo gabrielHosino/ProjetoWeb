@@ -7,6 +7,13 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 	id = splitHref[1];
 	var user;
 	$scope.myPosts = [];
+
+	Search = function(){
+		var looking = document.getElementById("search").value;
+
+		location.href = "http://localhost:1337/search:id=" + id + ":search=" + looking;
+	};
+
 	inicialService.user(id).then(
 		function(response){
 			inicialService.setUser(response.data[0]);
@@ -35,7 +42,9 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 			console.log($scope.myPosts[0]);
 			var div = document.getElementById("divPosts");
 			var title = document.getElementById("titlepost");
+			var prof = document.getElementById("prof");
 			var cName = title.className;
+			var pName = title.className;
 			for(i = 0; i < $scope.myPosts.length; i++){
 				if(i % 2 == 0){
 					var node = document.createElement("divp");
@@ -43,6 +52,8 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 					var node = document.createElement("divp2");
 				}
 				
+				var space = document.createElement("div");
+				space.className = pName;
 				node.className = cName;
 				var name = document.createElement("h4");
 				var text = document.createElement("p");
@@ -54,6 +65,7 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 				text.appendChild(texttext);
 				node.appendChild(name);
 				node.appendChild(text);
+				div.appendChild(space);
 				div.appendChild(node);
 			}
 		},

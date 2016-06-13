@@ -6,6 +6,29 @@
  */
 
 module.exports = {
+	searchByFN: function(req, res){
+		var search = {search: req.param("search")};
+		console.log("SERVICE");
+		console.log(search);
+
+		loginsigninService.searchByFN(search, function(result){
+			return res.json(result);
+		});
+	},
+	searchByLN: function(req, res){
+		var search = {search: req.param("search")};
+
+		loginsigninService.searchByLN(search, function(result){
+			return res.json(result);
+		});
+	},
+	searchByNick: function(req, res){
+		var search = {search: req.param("search")};	
+
+		loginsigninService.searchByNick(search, function(result){
+			return res.json(result);
+		});
+	},
 	save: function(req,res){
 		//var value = req.param('Teste');
 		var value = req.body;

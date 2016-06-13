@@ -2,6 +2,12 @@ var myApp = angular.module('inicial');
 
 //Service
 myApp.controller('friends', ['$scope', 'inicialService', function($scope, inicialService) {
+	Search = function(){
+		var looking = document.getElementById("search").value;
+
+		location.href = "http://localhost:1337/search:id=" + id + ":search=" + looking;
+	};
+
 	var id;
 	var splitHref = location.href.split('=');
 	id = splitHref[1];
