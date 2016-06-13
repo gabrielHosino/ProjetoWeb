@@ -11,10 +11,16 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 		function(response){
 			inicialService.setUser(response.data[0]);
 			user = inicialService.getUser();
+			console.log(user);
 			document.getElementsByTagName("uname")[0].innerHTML = user.firstname + " " + user.lastname;
 			console.log("BIRTH " + user.birth);
-			var date = user.birth.split("T");
-			document.getElementsByTagName("ubirth2")[0].innerHTML = date[0];
+			console.log("BIO " + user.bio);
+			var date
+			if(user.birth != undefined){
+				date = user.birth.split("T");
+				document.getElementsByTagName("ubirth2")[0].innerHTML = date[0];
+			}
+			document.getElementsByTagName("udesc")[0].innerHTML = user.bio;
 		},
 		//Error
 		function(response){
@@ -68,14 +74,65 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 	};
 
 	updateBio = function(){
-		var newdesc = document.getElementById("newbio");
+		var newdesc = document.getElementById("newbio").value;
+		var newfirstname = document.getElementById("newfirstname").value;
+		var newlastname = document.getElementById("newlastname").value;
+		var newdate = document.getElementById("newdate").value;
+		var confirm = document.getElementById("confirmEdit");
+		var newbio = document.getElementById("newbio");
+		var newfn = document.getElementById("newfirstname");
+		var newln = document.getElementById("newlastname");
+		var newdt = document.getElementById("newdate");
+		var bio = document.getElementsByTagName("udesc")[0];
+		var name = document.getElementsByTagName("uname")[0];
+		var date = document.getElementsByTagName("ubirth2")[0];
 
-		console.log(newdesc);
+		if(newdate != ""){
+			var dates = newdate.split("T");
+			date.innerHTML = dates[0];
+			inicialService.updateBirth({id: id, newbirth: dates[0]});
+		}else{
+			console.log("NULLDATE");
+			date.removeChild(newdt);
+		}
+
+		if(newdesc != ""){
+			bio.innerHTML = newdesc;
+			inicialService.updateBio({id: id, newbio: newdesc});
+		}
+		else{
+			console.log("NULLDESC");
+			bio.removeChild(confirm);
+			bio.removeChild(newbio);
+		}
+
+		if(newfirstname != ""){
+			name.innerHTML = newfirstname + " " + newlastname;
+			inicialService.updateFirstname({id: id, newfn: newfirstname});
+			inicialService.updateLastname({id: id, newln: newlastname});
+		}
+		else{
+			console.log("NULLNOME");
+			name.removeChild(newfn);
+			name.removeChild(newln);
+		}
+
+		name.removeChild(newfn);
+		name.removeChild(newln);
+		date.removeChild(newdt);
+		bio.removeChild(confirm);
+		bio.removeChild(newbio);
 	};
 
 	editProfile = function(){
+		var names = document.getElementsByTagName("uname")[0];
+		var date = document.getElementsByTagName("ubirth2")[0];
 		var bio = document.getElementsByTagName("udesc")[0];
 		var newbio = document.createElement("INPUT");
+		var newfirstname = document.createElement("INPUT");
+		var newlastname = document.createElement("INPUT");
+		var newdate = document.createElement("INPUT");
+		newdate.setAttribute("type", "date");
 		var confirm = document.createElement("BUTTON");
 
 		confirm.id = "confirmEdit";
@@ -84,8 +141,18 @@ myApp.controller('profile', ['$scope', 'inicialService', function($scope, inicia
 		confirm.addEventListener("click", updateBio);
 
 		newbio.id = "newbio";
+		
+		newfirstname.id = "newfirstname";
+		newlastname.id = "newlastname";
+
+		newdate.id = "newdate";
+
 		bio.appendChild(newbio);
 		bio.appendChild(confirm);
+		date.appendChild(newdate);
+		names.appendChild(newfirstname);
+		names.appendChild(newlastname);
+
 	};
 
 	showEdit = function(){

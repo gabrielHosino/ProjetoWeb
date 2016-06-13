@@ -9,11 +9,19 @@ myApp.controller('home', ['$scope', 'inicialService', function($scope, inicialSe
 	myNewPost = function(){
 		var text = document.getElementById("posts").value;
 		console.log(text);
+<<<<<<< HEAD
 		var myPost = {text : text, user : id};
+=======
+		var myPost = {text : text};
+>>>>>>> 15344d4a9df57f4b3c6f79a77183c5f2f580b1bb
 		inicialService.newPost(myPost).then(
 				//success
 				function(response){
 					console.log('Post Criado.');
+<<<<<<< HEAD
+=======
+					//colocar cliente cadastrado na proxima pagina
+>>>>>>> 15344d4a9df57f4b3c6f79a77183c5f2f580b1bb
 				},
 				//Error
 				function(response){
@@ -21,7 +29,10 @@ myApp.controller('home', ['$scope', 'inicialService', function($scope, inicialSe
 				});
 	};
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15344d4a9df57f4b3c6f79a77183c5f2f580b1bb
 	inicialService.user(id).then(
 		function(response){
 			inicialService.setUser(response.data[0]);
@@ -42,7 +53,10 @@ myApp.controller('home', ['$scope', 'inicialService', function($scope, inicialSe
 	document.getElementById("groups").href = document.getElementById("groups").href + ":id=" + id;
 	document.getElementById("about").href = document.getElementById("about").href + ":id=" + id;
 	document.getElementById("contact").href = document.getElementById("contact").href + ":id=" + id;
+<<<<<<< HEAD
 
 	
 
+=======
+>>>>>>> 15344d4a9df57f4b3c6f79a77183c5f2f580b1bb
 }]);

@@ -57,6 +57,18 @@ myApp.factory('inicialService', function ($http) {
 			'user': function(userid){
 				return $http.get('/Inicial/user', {params: {id: userid}});
 			},
+			'updateBio': function(userbio){
+				return $http.post('/Inicial/updateBio', {id: userbio.id, newbio: userbio.newbio});
+			},
+			'updateFirstname': function(userfn){
+				return $http.post('/Inicial/updateFirstname', {id: userfn.id, newfn: userfn.newfn});
+			},
+			'updateLastname': function(userln){
+				return $http.post('/Inicial/updateLastname', {id: userln.id, newln: userln.newln});
+			},
+			'updateBirth': function(userbirth){
+				return $http.post('/Inicial/updateBirth', {id: userbirth.id, newbirth: userbirth.newbirth});
+			},
 			'newPost': function(newPost){
 			    return $http.post('/Inicial/newpost',newPost);
 			},
@@ -140,8 +152,8 @@ myApp.controller('btns', ['$scope', 'inicialService', function($scope, inicialSe
 		document.getElementById("date").value = '';					
     };
 
-
-
 }]);
+
+
 
 

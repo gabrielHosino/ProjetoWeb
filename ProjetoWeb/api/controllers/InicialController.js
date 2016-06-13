@@ -30,6 +30,32 @@ module.exports = {
 			return res.json(client);
 		});
 	},
+	updateBio: function(req, res){
+		var value = {id: req.param('id'), newbio: req.param('newbio')};
+		loginsigninService.updateBio(value, function(result){
+			return res.json(result);
+		});
+	},
+	updateFirstname: function(req, res){
+		var value = {id: req.param('id'), newfn: req.param('newfn')};
+		loginsigninService.updateFirstname(value, function(result){
+			return res.json(result);
+		});
+	},
+	updateLastname: function(req, res){
+		var value = {id: req.param('id'), newln: req.param('newln')};
+		loginsigninService.updateLastname(value, function(result){
+			return res.json(result);
+		});
+	},
+	updateBirth: function(req, res){
+		var value = {id: req.param('id'), newbirth: req.param('newbirth')};
+		console.log("SERVICE");
+		console.log(value);
+		loginsigninService.updateBirth(value, function(result){
+			return res.json(result);
+		});
+	},
 	newpost: function(req,res){
 		//var value = req.param('Teste');
 		var value = req.body;
