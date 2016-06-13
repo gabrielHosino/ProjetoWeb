@@ -11,7 +11,7 @@ module.exports = {
 	},
 
 	getyourposts: function(value,callback){
-		twiche.find({user: value}).exec(function(err, posts){
+		twiche.find({user: value}).populate('user').exec(function(err, posts){
 			if (err){
 				throw err;
 			}

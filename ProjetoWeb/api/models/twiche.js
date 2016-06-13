@@ -15,7 +15,7 @@ module.exports = {
     	notNull: true
     },
     user: {
-        model: 'clients',
+        model: 'Clients',
         notNull: true
     }	
   }

@@ -33,6 +33,7 @@ myApp.config(['$routeProvider',
 
 myApp.factory('inicialService', function ($http) {
 	var user;
+	var myPosts = [];
 
 	return {
 			'setUser': function(newuser){
@@ -40,6 +41,12 @@ myApp.factory('inicialService', function ($http) {
 			},
 			'getUser': function(){
 				return user;
+			},
+			'saveMyPost': function(data){
+				myPosts = data;
+			},
+			'readMyPost' : function(){
+				return myPosts;
 			},
 			'save': function(newClient){
 			    return $http.post('/Inicial/save',newClient);
